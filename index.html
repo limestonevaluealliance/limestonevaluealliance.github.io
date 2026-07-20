@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limestone Value Alliance PLC</title>
+	<link rel="icon" type="<link rel="icon" type="image/png" href="images/Logo.png">
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* --- Reset & Base Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        /* --- Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(10, 25, 47, 0.4) 0%, rgba(10, 25, 47, 0) 100%);
+	        border-bottom: none;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+	.logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+
+       .logo span {
+            color: #3498db;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 650;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* --- Section Layouts --- */
+        section {
+            padding: 100px 20px 80px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #1a365d;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #3498db;
+            margin: 10px auto 0 auto;
+        }
+
+        /* --- Auto-Scrolling Hero Section --- */
+        #home {
+            color: white;
+            overflow: hidden;
+            background-color: #0f2043;
+            position: relative;
+            height: 100vh;
+            height: 100dvh; /* Dynamic viewport height for modern mobile devices */
+            width: 100%;
+            transform: translate3d(0, 0, 0)
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+	        margin-top: 0;
+	        padding-top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            visibility: hidden;
+            /*transition: opacity 1.2s ease-in-out;*/
+            will-change: opacity, visibility;
+            /* FIX: Keep transitions fluid across mobile platforms */
+            transition: opacity 1200ms ease-in-out, visibility 1200ms ease-in-out;
+        }
+
+        /* Dark high-tech overlay for readability */
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(15, 32, 67, 0.85), rgba(26, 54, 93, 0.85)100%); 
+        }
+
+            .slide.active {
+                opacity: 1;
+                visibility: visible;
+            }
+        .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10; /* Ensures dots sit above the background overlay */
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+            /* Style for the active slide dot */
+            .dot.active, .dot:hover {
+                background-color: #ffffff;
+                transform: scale(1.2);
+                box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+            }
+
+
+	/*.slide-caption {
+  		position: absolute;
+  		bottom: 20px;
+  		left: 20px;
+  		color: #ffffff;
+  		background: rgba(0, 0, 0, 0.6); /* Translucent dark background for readability 
+  		padding: 15px;
+  		border-radius: 4px;
+  		max-width: 500px;
+		}
+	*/
+        #home h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        #home p {
+            font-size: 20px;
+            margin-bottom: 35px;
+            max-width: 700px;
+            color: #e2e8f0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+      /* --- About Section --- */
+        #about {
+            background:  radial-gradient(circle,rgba(42, 123, 155, 1) 0%, 
+			rgba(87, 199, 133, 1) 100%, rgba(237, 221, 83, 1) 91%);
+        }
+
+        #about p {
+            max-width: 700px;
+            font-size: 24px;
+            margin-top: 20px;
+	        text-align: left;
+        }
+
+        /* --- Services Section --- */
+        #services {
+            background: radial-gradient(circle,rgba(42, 123, 155, 1) 0%, 
+			rgba(87, 199, 133, 1) 100%, rgba(237, 221, 83, 1) 91%);;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 45px;
+            width: 100%;
+        }
+
+        .service-box {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
+            border-top: 4px solid transparent;
+        }
+
+        .service-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-top: 4px solid #3498db;
+        }
+
+        .service-box h3 {
+            margin-bottom: 15px;
+            color: #1a365d;
+            font-size: 22px;
+        }
+
+        .service-box p {
+            color: #718096;
+            font-size: 15px;
+        }
+
+        /* --- Contact Section --- */
+        #contact {
+            background: radial-gradient(circle,rgba(42, 123, 155, 1) 0%, 
+			rgba(87, 199, 133, 1) 100%, rgba(237, 221, 83, 1) 91%);
+        }
+     #contact p {
+            max-width: 700px;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 550px;
+            margin: 40px auto 0 auto;
+        }
+
+        input, textarea {
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            background: #f7fafc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            background: #fff;
+        }
+
+        form .btn {
+            border: none;
+            cursor: pointer;
+        }
+	.site-footer
+        {
+            background: #0f2043;
+            color: #a0aec0;
+            text-align: center;
+            padding: 80px 70px;
+            font-size: 14px;
+        }
+
+	.footer-container {
+  		display: flex;
+  		flex-wrap: wrap;
+  		justify-content: space-between;
+  		max-width: 1200px;
+  		margin: 0 auto;
+		}
+
+	.footer-column {
+ 		 flex: 1;
+  		min-width: 250px;
+ 		 margin-bottom: 20px;
+		}
+
+	.footer-column h3 {
+  		border-bottom: 0px solid #444;
+  		padding-bottom: 10px;
+  		margin-bottom: 15px;
+ 		 font-size: 18px;
+		}
+
+	.footer-column address {
+  		font-style: normal;
+ 		 line-height: 1.6;
+		}
+
+	.footer-column a {
+  		color: #3498db;
+  		text-decoration: none;
+		}
+
+	.footer-column a:hover {
+ 		 text-decoration: underline;
+		}
+
+	.social-links a {
+ 		/* display: inline-block;*/
+		/*border: 1px solid #ddd;*/
+		/*border-radius: 50%;*/ /* Makes them perfectly round circles */
+ 		margin-right: 15px;
+ 		color: #ffffff;
+        font-size: 24px; /* Adjust size of icons */
+        color: #ffffff;    /* #333; Default icon color */
+  		text-decoration: none;
+		/*background: #ffffff;*/
+  		transition: transform 0.2s ease, color 0.2s ease;
+		}
+     .facebook:hover { color: #1877F2; }
+     .x-twitter:hover { color: #000000; }
+     .instagram:hover { color: #E4405F; }
+     .linkedin:hover { color: #0077B5; }
+     .youtube:hover { color: #F53827; }
+     .whatsapp:hover { color: #38F527; }
+
+	.footer-bottom {
+  		text-align: center;
+ 		margin-top: 30px;
+  		padding-top: 20px;
+  		border-top: 0px solid #444;
+  		font-size: 14px;
+  		color: #aaa;
+		}
+
+        /* Default desktop view */
+        .hamburger {
+            display: none;
+            font-size: 32px;
+            cursor: pointer;
+        }
+
+        /* Mobile view */
+        @media (max-width: 768px) {
+
+            #home h1 {
+                font-size: 36px;
+            }
+
+            .hamburger {
+                display: block;
+                color: white;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                padding: 5px 0; /* reduced spacing */
+                margin-top: 0; /* menu drops directly under hamburger */
+                background: none; /* no background color */
+            }
+
+                .nav-links.show {
+                    display: flex;
+                }
+
+                .nav-links li {
+                    margin: 6px 0;
+                }
+
+                .nav-links a {
+                    color: white;
+                    text-decoration: none;
+                    padding: 5px 0; /* small vertical padding */
+                }
+        }
+
+   .social-container {
+  	display: flex;
+  	gap: 20px;
+  	justify-content: center;
+  	align-items: center;
+  	padding: 20px;
+	}
+
+   /* Hover effects for specific brands */
+  .social-link:hover {
+       transform: translateY(-3px); /* Subtle lift effect */
+	}
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="nav-container">
+            <a href="#home" class="logo">Limestone Value Alliance</a>
+            <div class="hamburger" id="hamburger">☰</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Products & Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Auto-Scrolling IT Header -->
+    <section id="home">
+        <div class="hero-slider">
+            <!-- Carefully picked IT consulting, data analytics, and corporate tech imagery -->
+            <div class="slide active" style="background-image: url('images/Derivative.png?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="slide" style="background-image: url('images/Banner.png?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="slide" style="background-image: url('images/Agric farm.png?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="slide" style="background-image: url('images/Stones.png?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="slide" style="background-image: url('images/Silos.png?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="slide" style="background-image: url('images/vISION1.png?auto=format&fit=crop&w=1920&q=80');"></div>
+        </div>
+        <!-- ADD THIS: Indicator Dots Container -->
+        <div class="slider-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+            <span class="dot" data-index="4"></span>
+            <span class="dot" data-index="5"></span>
+        </div>
+        <div class="container">
+            <h1>Integrated Limestone Value-Chain Solutions from Nigeria For Global Industry</h1>
+            <a href="#services" class="btn">Explore Our Products and Services</a>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2>Our Expertise</h2>
+            <div class="services-grid">
+                <div class="service-box">
+                    <img src="images/AgricFarmServices.png" alt="Agric farm" auto=format&fit =crop&w =100&q =80">
+                    <h3>Agricultural & Environmental</h3>
+                    <p>Agricultural lime, soil conditioners, limestone-based fertilizers, poultry feed additives and water treatment chemicals.</p>
+                </div>
+
+                <div class="service-box">
+                    <img src="images/DerivativeServices.png" alt="Derivative" auto=format&fit =crop&w =200&q =80">
+                    <h3>Limestone & Derivatives</h3>
+                    <p>Industrial Limestone, Quicklime, Hydrated Lime, Precipitated Calcium Carbonate (PCC), Ground Calcium Carbonate (GCC).</p>
+                </div>
+
+                <div class="service-box">
+                    <img src="images/SilosServices.png" alt="Silos" auto=format&fit =crop&w =50&q =50">
+                    <h3>Industrial Applications</h3>
+                    <p>Cementitious materials, fillers and extenders for paints, coatings, plastics, paper, adhesives and manufacturing industries.</p>
+                </div>
+
+                <div class="service-box">
+                    <img src="images/Consultancy.png" alt="Consultancy" auto=format&fit =crop&w =300&q =50">
+                    <h3>Consultancy & Technical Advisory</h3>
+                    <p>Expert guidance across the limestone value chain, by assisting clients with resource evaluation, optimal extraction methods, and tailoring limestone-derived products to meet specific industrial, agricultural, or construction standards..</p>
+                </div>
+
+                <div class="service-box">
+                    <img src="images/Project Management.png" alt="Project Management" auto=format&fit =crop&w =50&q =20">
+                    <h3>Operational & Project Management</h3>
+                    <p>Focus on maintaining end-to-end value chain control to deliver efficient, on-time, and scalable production. Coordinating workflows, and ensuring that logistics and supply chains run seamlessly from Nigerian facilities to international markets.</p>
+                </div>
+
+                <div class="service-box">
+                    <img src="images/Process Optimization.png" alt="Process Optimization" auto=format&fit =crop&w =100&q =80">
+                    <h3>Environmental & Process Optimization</h3>
+                    <p>Enhancing efficiency and sustainability across value chain and processing methods to reduce energy consumption, minimize waste, and control emissions. Optimizing production processes to ensure that manufactured products meet strict quality standards while maintaining compliance with environmental regulations.</p>
+                </div>
+
+            </div> 
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>Who We Are</h2>
+            <p>
+                Limestone Value Alliance Plc is a proudly Nigerian industrial company delivering complete limestone value-chain solutions — from quarry to finished products.
+
+                We mine, process, refine, manufacture, package, and distribute limestone and limestone-derived products for industrial, agricultural, construction, and environmental markets.
+
+                Our strength lies in vertical integration, enabling us to control every stage of production to ensure quality, efficiency, reliability, and competitive pricing.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Connect With Us</h2>
+            <p>Ready to deploy our products and services? Tell us about your needs.</p>
+            <form action="https://formspree.io/f/xjgnboba" method="POST" id="contactForm">
+                <!-- Honeypot field (spam protection) -->
+                <input type="text" name="_gotcha" style="display:none">
+                <input type="text" name="full_name" placeholder="Full Name" required>
+                <input type="text" name="company_name" placeholder="Company Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <textarea name="message" rows="5" placeholder="Outline your consultation project details..." required></textarea>
+                <!-- Redirect after success -->
+                <input type="hidden" name="_redirect" value="https://linestonevaluealliance.com/thank-you.html">
+                <button type="submit" class="btn">Send</button>
+                <!-- Success message popup -->
+                <p id="successMessage" style="display:none; color:green; margin-top:10px;">
+                    Your message has been sent successfully. We’ll reach out shortly.
+                </p>
+            </form>
+
+        </div>
+    </section>
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- Column 1: Address -->
+            <div class="footer-column">
+                <h3>Ibadan</h3>
+                <p><i class="fa-solid fa-location-dot"></i> <a href="https://www.google.com/maps?q=Ibadan,+Nigeria" target="_blank">Ibadan, Oyo State</a></p>
+            </div>
+            <!-- Column 2: Address -->
+            <div class="footer-column">
+                <h3>Lagos</h3>
+                <p><i class="fa-solid fa-location-dot"></i> <a href="https://www.google.com/maps?q=Lagos,+Nigeria">Lagos, Lagoos State</a></p>
+            </div>
+            <!-- Column 3: Contacts -->
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p><i class="fa-solid fa-envelope"></i> <a href="mailto:info@lvaplc.com">info@lvaplc.com</a></p>
+                <p><i class="fa-solid fa-phone"></i> <a href="tel:+12048092469">+1 204-809-2469</a></p>
+                <p><i class="fa-solid fa-phone"></i> <a href="tel:+2348135831736">+234-813-583-1736</a></p>
+            </div>
+            <!-- Column 4: Social Media -->
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://x.com/enelytiq?s=11" target="_blank" rel="noopener noreferrer" class="social-links x-twitter">
+                        <i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://www.facebook.com/share/1Evj7McSJe/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link facebook">
+                        <i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/enelytiq?igsh=aGlpcXlrbXJkaXF6" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+                        <i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="social-link linkedin">
+                        <i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link youtube">
+                        <i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://whatsapp.com/dl/" target="_blank" rel="noopener noreferrer" class="social-link whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 Limestone Value Alliance PLC. All rights reserved.</p>
+            </div>
+        </div>
+</footer>
+    <script src="script.js"></script>
+</body>
+</html>
