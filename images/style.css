@@ -1,0 +1,133 @@
+/*Style.css*/
+body { margin:0; font-family:'Poppins',sans-serif; color:#2b2b2b; background:url('Backroung.pnm') no-repeat center fixed; background-size:cover; }
+    nav { position:fixed; top:0; width:100%; background:#1f2933; padding:16px 60px; display:flex; justify-content:space-between; align-items:center; z-index:1000; }
+    nav a { color:#fff; margin-left:24px; text-decoration:none; font-weight:500; }
+    header { background: linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)), url('Banner.png'); background-size: cover; background-position: center; color: #fff; padding: 160px 60px 120px; }
+    header h1 { font-size:52px; margin-bottom:12px; }
+    header p { font-size:20px; max-width:800px; }
+    section { padding:90px 60px; }
+   /*.section-title { font-size:36px; margin-bottom:28px; color:#1f2933; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
+    .card { background:#f5f7fa; padding:30px; border-radius:14px; box-shadow:0 12px 28px rgba(0,0,0,.08); }
+    .highlight { background:#eef2f7; padding:60px; border-radius:20px; }*/
+  
+    .section-title {
+  font-size: 36px;
+  margin-bottom: 28px;
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.45);
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap: 30px;
+}
+
+.card {
+  background: #5a6475; /* medium-dark grey — not too heavy, not too light */
+  color: #ffffff;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.30);
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card h3 {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 14px;
+  letter-spacing: 0.01em;
+}
+
+.card p,
+.card li,
+.card strong,
+.card span,
+.card a {
+  color: #ffffff;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.highlight {
+  background: rgba(255,255,255,0.92);
+  color: #1f2933;
+  padding: 60px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+}
+
+.highlight p {
+  color: #374151;
+  line-height: 1.8;
+}
+
+
+.card-image{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  object-position:center;
+  border-radius:10px;
+  margin-bottom:20px;
+  display:block;
+}
+.vision-section {
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.vision-card {
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+  border-radius: 15px;
+  /* Replace the URL below with your chosen quarry or architecture image */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                    url('https://unsplash.com');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.vision-content {
+  padding: 40px;
+}
+
+.vision-content span {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffcc00; /* A gold/yellow accent looks great for 'leadership' */
+  margin-bottom: 15px;
+  display: block;
+}
+
+.vision-content h2 {
+  font-size: 2rem;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.image-card {
+  padding: 0;
+  overflow: hidden; /* Keeps image corners rounded if card has border-radius */
+}
+
+
+footer { background:#1f2933; color:#fff; padding:50px 60px; }
+    footer p { margin:6px 0; }
